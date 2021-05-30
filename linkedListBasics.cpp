@@ -39,7 +39,7 @@ void display(node* head){
 }
 
 void insertAtHead(node* &head, int val){
-    node* n = head;
+    node* n = new node(val);
     n -> next = head;
     head = n;
 }
@@ -119,6 +119,9 @@ int main(){
     insertAtTail(head, 2);
     insertAtTail(head, 3);
     display(head);
+    insertAtHead(head, 5);
+    display(head);
+    cout<<search(head, 4)<<endl;
     node* newhead = reverseRecursive(head);
     display(newhead);
     return 0;
