@@ -55,6 +55,33 @@ bool search(node* head, int key){
     return false;
 }
 
+void deleteAtHead(node* &head){
+
+    node* todelete = head;
+    head = head->next;
+    delete todelete;
+}
+
+void deletion(node* &head, int val){
+
+    if(head == NULL){
+        return;
+    }
+
+    if(head -> next == NULL){
+        deleteAtHead(head);
+        return;
+    }
+
+    node* temp = head;
+    while(temp -> next -> data != val){
+        temp = temp -> next;
+    }
+    node* todelete = temp -> next;
+    temp -> next = temp -> next -> next;
+    delete todelete;
+}
+
 int main(){
 
     node* head = NULL;
@@ -62,6 +89,7 @@ int main(){
     insertAtTail(head, 2);
     insertAtTail(head, 3);
     display(head);
-
+    deletion(head, 2);
+    display(head);
     return 0;
 }
