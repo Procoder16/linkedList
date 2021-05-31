@@ -112,17 +112,42 @@ node* reverseRecursive(node* &head){
     return newhead;    
 }
 
+node* reverseK(node* &head, int k){
+
+    node* prevptr = NULL;
+    node* currptr = head;
+    node* nextptr;
+
+    int count = 0;
+
+    while(currptr != NULL && count<k){
+        nextptr = currptr -> next;
+        currptr ->next = prevptr;
+
+        prevptr = currptr;
+        currptr = nextptr;
+        count++;
+    }
+
+    if(nextptr != NULL){
+        head -> next = reverseK(nextptr, k);
+    }
+    
+    return prevptr;
+
+}
+
 int main(){
 
     node* head = NULL;
     insertAtTail(head, 1);
     insertAtTail(head, 2);
     insertAtTail(head, 3);
-    display(head);
-    insertAtHead(head, 5);
-    display(head);
-    cout<<search(head, 4)<<endl;
-    node* newhead = reverseRecursive(head);
+    insertAtTail(head, 4);
+    insertAtTail(head, 5);
+    insertAtTail(head, 6);
+    display(head);    
+    node* newhead = reverseK(head, 2);
     display(newhead);
     return 0;
 }
