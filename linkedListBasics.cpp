@@ -134,7 +134,37 @@ node* reverseK(node* &head, int k){
     }
     
     return prevptr;
+}
 
+void makeCycle(node* &head, int pos){
+
+    node* temp = head;
+    node* startNode;
+    int count = 1;
+    while(temp -> next !=NULL){
+
+        if(count == pos){
+            startNode = temp;
+        }
+        temp = temp -> next;
+        count++;
+    }
+    temp -> next = startNode;
+}
+
+bool detectCycle(node* &head){
+    node* slow = head;
+    node* fast = head;
+
+    while(fast!=NULL && fast -> next !=NULL){
+        slow = slow -> next;
+        fast = fast -> next -> next;
+
+        if(fast == slow){
+            return true;
+        }
+    }
+    return false;
 }
 
 int main(){
@@ -146,8 +176,7 @@ int main(){
     insertAtTail(head, 4);
     insertAtTail(head, 5);
     insertAtTail(head, 6);
-    display(head);    
-    node* newhead = reverseK(head, 2);
-    display(newhead);
+    makeCycle(head, 3);
+    cout<<detectCycle(head);
     return 0;
 }
