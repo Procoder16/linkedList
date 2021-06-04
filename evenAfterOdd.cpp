@@ -50,9 +50,6 @@ void evenAfterOdd(node* &head){
     }
 
     odd -> next = evenStart;
-    if(odd -> next == NULL){
-        odd -> next = NULL;
-    }
 }
 
 int main(){
@@ -63,6 +60,8 @@ int main(){
     insertAtTail(head, 3);
     insertAtTail(head, 4);
     insertAtTail(head, 5);
+    insertAtTail(head, 6);
+    insertAtTail(head, 7);
     display(head);
     evenAfterOdd(head);
     display(head);
